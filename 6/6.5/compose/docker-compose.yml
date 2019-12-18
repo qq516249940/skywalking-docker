@@ -26,12 +26,14 @@ services:
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx2048m"
       - TZ=Asia/Shanghai
     ulimits:
       memlock:
         soft: -1
         hard: -1
+    volumes:
+    - elasticsearch:/usr/share/elasticsearch/data:rw
   oap:
     image: apache/skywalking-oap-server:6.5.0
     container_name: oap
@@ -60,3 +62,7 @@ services:
     environment:
       SW_OAP_ADDRESS: oap:12800
       TZ: 'Asia/Shanghai'
+
+volumes:
+  elasticsearch:
+    driver: local
