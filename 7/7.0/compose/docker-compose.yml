@@ -26,9 +26,10 @@ services:
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms4096m -Xmx4096m"
+      - "ES_JAVA_OPTS=-Xms8192m -Xmx8192m"
       - thread_pool.write.queue_size=1000
       - thread_pool.index.queue_size=1000
+      - TZ=Asia/Shanghai
     ulimits:
       memlock:
         soft: -1
@@ -50,6 +51,7 @@ services:
       SW_STORAGE: elasticsearch
       SW_STORAGE_ES_CLUSTER_NODES: elasticsearch:9200
       JAVA_OPTS: "-Xms2048m -Xmx2048m" 
+      TZ: 'Asia/Shanghai'
   ui:
     image: apache/skywalking-ui:7.0.0
     container_name: ui
@@ -62,6 +64,7 @@ services:
       - 8080:8080
     environment:
       SW_OAP_ADDRESS: oap:12800
+      TZ: 'Asia/Shanghai'
 
 volumes:
   data:
