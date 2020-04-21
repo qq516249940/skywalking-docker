@@ -26,7 +26,8 @@ services:
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms8192m -Xmx8192m"
+#      - "ES_JAVA_OPTS=-Xms8192m -Xmx8192m"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - thread_pool.write.queue_size=1000
       - thread_pool.index.queue_size=1000
       - TZ=Asia/Shanghai
